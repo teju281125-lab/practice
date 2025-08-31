@@ -3669,3 +3669,122 @@ details-disclosure > details {
     font-size: 2rem;
   }
 }
+.custom-header {
+  background: #fafafa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  position: relative;
+  z-index: 10;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+}
+
+.desktop-extra {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.slogan {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.choose-gift-btn {
+  display: flex;
+  align-items: center;
+  background: #ffe729;
+  color: #222;
+  font-weight: 500;
+  font-size: 1.08rem;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  position: relative;
+}
+.choose-gift-btn .arrow {
+  margin-left: 9px;
+  font-size: 1.2em;
+  transition: color 0.2s;
+}
+
+.choose-gift-btn:hover, .choose-gift-btn:focus {
+  background: #111;
+  color: #fff;
+}
+.choose-gift-btn:hover .arrow, .choose-gift-btn:focus .arrow {
+  color: #fff;
+}
+
+/* MENU ICON - Show only on mobile */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  margin-right: 16px;
+  cursor: pointer;
+  display: none;
+}
+.menu-icon { display: block; }
+.close-icon { display: none; }
+
+@media (max-width: 900px) {
+  .desktop-extra {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0; right: 0;
+  background: #fafafa;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 14px 30px 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 50;
+}
+.mobile-menu .site-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.mobile-menu .slogan {
+  margin: 14px 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.mobile-menu .choose-gift-btn {
+  margin-top: 14px;
+}
+
+/* Open menu state */
+.header-open .mobile-menu { display: flex; }
+.header-open .close-icon { display: block; }
+.header-open .menu-icon { display: none; }
+
+/* Hide header-inner on mobile when menu open */
+@media (max-width: 900px) {
+  .header-open .header-inner { display: none; }
+}
+
