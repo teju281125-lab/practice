@@ -3595,3 +3595,77 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+/* === Custom Banner Section === */
+.custom-banner {
+  width: 100%;
+  padding: 80px 20px;
+  background: #fff; /* change if your Figma uses color */
+}
+
+.custom-banner__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.custom-banner__text {
+  flex: 1;
+}
+
+.custom-banner__text h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.custom-banner__text p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.custom-banner__button {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.custom-banner__button:hover {
+  background: #333;
+}
+
+.custom-banner__image {
+  flex: 1;
+  text-align: right;
+}
+
+.custom-banner__image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === Mobile Responsive === */
+@media (max-width: 768px) {
+  .custom-banner__container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .custom-banner__image {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .custom-banner__text h2 {
+    font-size: 2rem;
+  }
+}
