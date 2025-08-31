@@ -22,7 +22,14 @@
     {% assign product_obj = all_products[product] %}
     <div class="grid-item">
       <div class="circle-btn" data-index="{{ forloop.index0 }}"></div>
-      <img src="{{ product_obj.featured_image | img_url: '400x400' }}" alt="{{ product_obj.title }}" class="grid-img" />
+<img
+  src="{{ product_obj.featured_image | image_url: width: 400, height: 400 }}"
+  alt="{{ product_obj.title }}"
+  class="grid-img"
+  width="400"
+  height="400"
+  loading="lazy"
+/>
       <div class="grid-title-sm">{{ product_obj.title }}</div>
     </div>
     {% endfor %}
