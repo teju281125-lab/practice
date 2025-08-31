@@ -1,23 +1,45 @@
+<section class="custom-banner">
+  <div class="custom-banner__container">
+    
+    <!-- LEFT SIDE (TEXT + BUTTON) -->
+    <div class="custom-banner__text">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subtext }}</p>
+      <a href="{{ section.settings.button_link }}" class="custom-banner__button">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE (ILLUSTRATION / VECTOR) -->
+    <div class="custom-banner__image">
+      {% if section.settings.banner_svg != blank %}
+        <img src="{{ section.settings.banner_svg | file_url }}" alt="Banner Illustration">
+      {% endif %}
+    </div>
+    
+  </div>
+</section>
+
 {% schema %}
 {
   "name": "Custom Banner",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "banner_image",
-      "label": "Banner Background"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Gift Shop"
     },
     {
       "type": "text",
-      "id": "headline",
-      "label": "Headline",
-      "default": "The Gift Guide"
+      "id": "subtext",
+      "label": "Discover our exclusive collection"
     },
     {
-      "type": "textarea",
-      "id": "subheadline",
-      "label": "Subheadline",
-      "default": "Discover your ultimate holiday gift destination. Explore our curated selection..."
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
     },
     {
       "type": "text",
@@ -25,12 +47,14 @@
       "label": "Button Text",
       "default": "Shop Now"
     },
+    
     {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link",
-      "default": "/collections/all"
-    }
+  "type": "image_picker",
+  "id": "banner_svg",
+  "label": "Upload Banner Illustration"
+}
+
+    
   ],
   "presets": [
     {
@@ -40,63 +64,84 @@
 }
 {% endschema %}
 
-<section class="custom-banner" style="background-image: url({{ section.settings.banner_image | img_url: '1600x' }});">
-  <div class="custom-banner__overlay"></div>
-  <div class="custom-banner__content">
-    <h1>{{ section.settings.headline }}</h1>
-    <p>{{ section.settings.subheadline }}</p>
-    <a href="{{ section.settings.button_link }}" class="banner-btn">{{ section.settings.button_text }}</a>
-  </div>
-</section>
-
 <style>
-  .custom-banner {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.custom-banner {
+  width: 100%;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff; /* match your figma bg */
+}
+
+.custom-banner__container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.custom-banner__text {
+  flex: 1;
+  text-align: left;
+}
+
+.custom-banner__text h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.custom-banner__text p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.custom-banner__button {
+  background-color: black;
+  color: white;
+  padding: 14px 32px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-banner__button:hover {
+  background-color: #FFD700; /* Yellow hover */
+  color: black;
+}
+
+.custom-banner__image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-banner__image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .custom-banner__container {
+    flex-direction: column;
     text-align: center;
-    color: #000;
   }
-  .custom-banner__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.8);
+
+  .custom-banner__text {
+    text-align: center;
   }
-  .custom-banner__content {
-    position: relative;
-    max-width: 800px;
-    padding: 20px;
-    z-index: 2;
+
+  .custom-banner__image {
+    justify-content: center;
+    margin-top: 20px;
   }
-  .custom-banner h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  .custom-banner p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-  .banner-btn {
-    display: inline-block;
-    padding: 12px 28px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-  }
-  .banner-btn:hover {
-    transform: scale(1.05);
-  }
-  @media(max-width:768px) {
-    .custom-banner { height: 60vh; padding: 40px 20px; }
-    .custom-banner h1 { font-size: 2rem; }
-    .custom-banner p { font-size: 1rem; }
-  }
+}
 </style>
