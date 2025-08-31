@@ -11,12 +11,22 @@
     </div>
 
     <!-- RIGHT SIDE (ILLUSTRATION / VECTOR) -->
-   <div class="custom-banner__image">
+ <div class="custom-banner__image">
   {% if section.settings.banner_svg != blank %}
-    <img src="{{ section.settings.banner_svg | image_url }}" alt="Banner Illustration">
+    <img 
+      src="{{ section.settings.banner_svg | image_url: width: 600 }}" 
+      alt="Banner Illustration"
+      width="600"
+      height="auto"
+      loading="lazy">
   {% else %}
-    <!-- Fallback static image if nothing is uploaded -->
-    <img src="https://cdn.shopify.com/s/files/1/0970/5321/2753/files/Frame.svg?v=1756619962" alt="Banner Illustration">
+    <!-- Fallback static image -->
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0970/5321/2753/files/Frame.svg?v=1756619962" 
+      alt="Banner Illustration"
+      width="600"
+      height="auto"
+      loading="lazy">
   {% endif %}
 </div>
 
