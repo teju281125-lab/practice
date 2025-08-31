@@ -10,11 +10,9 @@
 {
   "sections": {
     "banner_8Kn3rD": {
-      "type": "banner",
+      "type": "custom-banner",
       "name": "Custom Banner",
       "settings": {
-        "headline": "The Gift Guide",
-        "subheadline": "Discover your ultimate holiday gift destination. Explore our curated selection",
         "button_text": "Shop Now",
         "button_link": "shopify://collections/all"
       }
