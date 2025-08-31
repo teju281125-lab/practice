@@ -28,6 +28,75 @@
     {% endfor %}
   </div>
   <div id="product-popup" class="popup-overlay" style="display:none"></div>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const gridItems = document.querySelectorAll('.grid-item .circle-btn');
+  const popupOverlay = document.getElementById('product-popup');
+
+  gridItems.forEach((btn, idx) => {
+    btn.addEventListener('click', function() {
+      const productData = window.customGridProducts[idx];
+      renderPopup(productData);
+      popupOverlay.style.display = 'block';
+    });
+  });
+
+  function renderPopup(product) {
+    let variantsOptions = '';
+    product.variants.forEach(variant => {
+      variantsOptions += `<option value="${variant.id}">${variant.title} – ${variant.price}</option>`;
+    });
+
+    popupOverlay.innerHTML = `
+      <div class="popup-content">
+        <button class="popup-close" aria-label="Close">&times;</button>
+        <img src="${product.image}" style="max-width: 180px; border-radius: 8px; margin-bottom:12px;">
+        <h3>${product.title}</h3>
+        <div style="color:#444;margin-bottom:8px;">${product.price}</div>
+        <p style="margin-bottom:12px;">${product.description}</p>
+        <form id="addToCartForm">
+          <label>Choose Variant:</label>
+          <select name="variant_id">${variantsOptions}</select>
+          <button type="submit" class="banner-btn" style="width:100%;margin-top:15px;">ADD TO CART</button>
+        </form>
+      </div>
+    `;
+
+    popupOverlay.querySelector('.popup-close').onclick = () => {
+      popupOverlay.style.display = 'none';
+    };
+
+    popupOverlay.querySelector('#addToCartForm').onsubmit = function(e){
+      e.preventDefault();
+      const varId = this.variant_id.value;
+
+      const selectedVariant = product.variants.find(v => v.id == varId);
+      let addJacket = false;
+      if(selectedVariant && selectedVariant.title.toLowerCase().includes("black") && selectedVariant.title.toLowerCase().includes("medium")) {
+        addJacket = true;
+      }
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({id: varId, quantity: 1})
+      }).then(res => res.json())
+      .then(() => {
+        if(addJacket) {
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({id: window.softWinterJacketVariantId, quantity: 1})
+          });
+        }
+        alert('Added to cart');
+        popupOverlay.style.display = 'none';
+      });
+    };
+  }
+});
+</script>
+
 </section>
 
 <style>
