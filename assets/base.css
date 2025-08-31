@@ -3681,23 +3681,25 @@ details-disclosure > details {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 24px;
+  padding: 12px 28px;
 }
 
 .site-title {
-  font-weight: 700;
+  font-weight: bold;
   font-size: 2rem;
   letter-spacing: 0.06em;
+  flex: 1;
+  text-align: center;
 }
 
 .desktop-extra {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 30px;
 }
 
 .slogan {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #222;
 }
 
@@ -3706,23 +3708,21 @@ details-disclosure > details {
   align-items: center;
   background: #ffe729;
   color: #222;
-  font-weight: 500;
-  font-size: 1.08rem;
-  padding: 12px 30px;
-  border: none;
-  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 34px;
   border-radius: 2px;
   text-decoration: none;
   transition: background 0.18s, color 0.18s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-  position: relative;
+  border: none;
+  cursor: pointer;
 }
 .choose-gift-btn .arrow {
-  margin-left: 9px;
+  margin-left: 10px;
   font-size: 1.2em;
-  transition: color 0.2s;
+  transition: color 0.18s;
 }
-
 .choose-gift-btn:hover, .choose-gift-btn:focus {
   background: #111;
   color: #fff;
@@ -3731,14 +3731,14 @@ details-disclosure > details {
   color: #fff;
 }
 
-/* MENU ICON - Show only on mobile */
+/* Menu toggle icons - mobile only */
 .menu-toggle {
   background: transparent;
   border: none;
   font-size: 2rem;
-  margin-right: 16px;
   cursor: pointer;
   display: none;
+  align-items: center;
 }
 .menu-icon { display: block; }
 .close-icon { display: none; }
@@ -3748,43 +3748,49 @@ details-disclosure > details {
     display: none;
   }
   .menu-toggle {
-    display: block;
+    display: flex;
+  }
+  .site-title {
+    text-align: left;
+    flex: unset;
+    font-size: 1.5rem;
+    padding-left: 10px;
+  }
+  .header-inner {
+    padding: 12px 10px;
   }
 }
 
-/* MOBILE MENU */
+/* Mobile menu style */
 .mobile-menu {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0; right: 0;
-  background: #fafafa;
   flex-direction: column;
   align-items: center;
-  padding: 24px 14px 30px 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  z-index: 50;
+  position: absolute;
+  width: 100%;
+  left: 0; top: 0;
+  background: #fafafa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+  z-index: 100;
+  padding: 26px 14px 38px 14px;
 }
 .mobile-menu .site-title {
   font-size: 2rem;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  text-align: center;
 }
 .mobile-menu .slogan {
-  margin: 14px 0;
-  font-size: 1.1rem;
+  margin-bottom: 18px;
+  font-size: 1rem;
   text-align: center;
 }
 .mobile-menu .choose-gift-btn {
-  margin-top: 14px;
+  margin-top: 6px;
+  align-self: center;
 }
 
-/* Open menu state */
+/* When menu is open */
 .header-open .mobile-menu { display: flex; }
-.header-open .close-icon { display: block; }
 .header-open .menu-icon { display: none; }
-
-/* Hide header-inner on mobile when menu open */
-@media (max-width: 900px) {
-  .header-open .header-inner { display: none; }
-}
-
+.header-open .close-icon { display: block; }
+.header-open .header-inner { display: none; }
