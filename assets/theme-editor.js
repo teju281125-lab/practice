@@ -52,3 +52,13 @@ document.addEventListener('shopify:section:deselect', () => hideProductModal());
 document.addEventListener('shopify:inspector:activate', () => hideProductModal());
 
 document.addEventListener('shopify:inspector:deactivate', () => hideProductModal());
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('.custom-header');
+  const menuToggle = document.querySelector('.menu-toggle');
+  
+  if (menuToggle && header) {
+    menuToggle.addEventListener('click', function() {
+      header.classList.toggle('header-open');
+    });
+  }
+});
