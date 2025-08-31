@@ -41,6 +41,13 @@
 {% endschema %}
 
 <section class="custom-banner-section">
+  <div class="banner-header-row">
+  <div class="banner-header-left">TISSO VISON</div>
+  <div class="banner-header-center">Find the ideal gift for your loved ones.</div>
+  <a href="#" class="banner-header-btn">
+    CHOOSE GIFT <span class="arrow">→</span>
+  </a>
+</div>
   <div class="banner-background">
 <img src="{{ 'banner-art.svg' | asset_url }}" alt="" width="1052" height="400" loading="lazy" />
   </div>
@@ -55,6 +62,77 @@
 </section>
 
 <style>
+.banner-header-row {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 38px 22px 42px;
+  background: #fafafa;
+  font-family: inherit;
+  font-size: 1.12rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 3;
+}
+.banner-header-left {
+  font-size: 1.36rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  color: #111;
+  font-family: 'Arial Black', Arial, sans-serif; /* Use your project's heading font */
+}
+.banner-header-center {
+  margin: 0 auto;
+  text-align: center;
+  flex: 1 1 auto;
+  color: #181818;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.banner-header-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #ffe733;
+  color: #111;
+  font-weight: 600;
+  padding: 15px 40px;
+  text-decoration: none;
+  font-size: 1.13rem;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  margin-left: 22px;
+  transition: background 0.18s, color 0.18s, box-shadow 0.16s;
+  letter-spacing: 0.02em;
+}
+.banner-header-btn .arrow {
+  margin-left: 12px;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.15s;
+  font-size: 1.14em;
+}
+.banner-header-btn:hover {
+  background: #fff700;
+  color: #000;
+  box-shadow: 0 3px 11px rgba(0,0,0,0.08);
+}
+.banner-header-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .banner-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 9vw;
+    font-size: 1rem;
+  }
+  .banner-header-left, .banner-header-btn { margin-bottom: 8px; }
+  .banner-header-center { text-align: left; width: 100%; }
+
 .custom-banner-section {
   position: relative;
   width: 100vw;
