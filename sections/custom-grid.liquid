@@ -1,0 +1,114 @@
+{% schema %}
+{
+  "name": "Custom Grid",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Grid Products",
+      "limit": 6
+    }
+  ],
+  "presets": [
+    { "name": "Custom Grid" }
+  ]
+}
+{% endschema %}
+
+<section class="custom-grid-section">
+  <h3 class="grid-title">Tisso vison in the wild</h3>
+  <div class="custom-grid">
+    {% for product in section.settings.products limit: 6 %}
+    {% assign product_obj = all_products[product] %}
+    <div class="grid-item">
+      <div class="circle-btn" data-index="{{ forloop.index0 }}"></div>
+      <img src="{{ product_obj.featured_image | img_url: '400x400' }}" alt="{{ product_obj.title }}" class="grid-img" />
+      <div class="grid-title-sm">{{ product_obj.title }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div id="product-popup" class="popup-overlay" style="display:none"></div>
+</section>
+
+<style>
+.custom-grid-section {
+  margin: 0 auto;
+  padding: 18px 0 32px 0;
+  max-width: 1100px;
+}
+.grid-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 24px 0 20px 8px;
+}
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+.grid-item {
+  position: relative;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid #eee;
+  transition: box-shadow 0.25s;
+}
+.grid-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.circle-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.grid-title-sm {
+  font-size: 1.0rem;
+  padding: 13px;
+  text-align: center;
+}
+/* Popup Basics */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top:0; left:0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.28);
+  z-index: 999;
+}
+.popup-content {
+  background: #fff;
+  border-radius: 7px;
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 34px 26px 26px 26px;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+  font-size: 1rem;
+}
+.popup-close {
+  position: absolute;
+  top: 15px; right: 15px;
+  width: 24px; height: 24px;
+  background: none; border: none; cursor: pointer;
+  font-size: 1.2rem; color: #333;
+}
+/* Responsive */
+@media (max-width: 900px){
+  .custom-grid {grid-template-columns:repeat(2,1fr);}
+  .grid-img {height:180px;}
+}
+@media (max-width: 600px){
+  .custom-grid {grid-template-columns:1fr;}
+  .grid-img {height:110px;}
+}
+</style>
