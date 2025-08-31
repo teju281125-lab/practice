@@ -181,3 +181,30 @@ document.addEventListener("DOMContentLoaded", function() {
   .grid-img {height:110px;}
 }
 </style>
+<script>
+  window.customGridProducts = [
+    {% for product in section.settings.products limit: 6 %}
+      {% assign p = all_products[product] %}
+      {
+        title: {{ p.title | json }},
+        price: "{{ p.price | money }}",
+        image: "{{ p.featured_image | img_url: '400x400' }}",
+        description: {{ p.description | strip_html | json }},
+        variants: [
+          {% for v in p.variants %}
+            {
+              id: {{ v.id | json }},
+              title: {{ v.title | json }},
+              price: "{{ v.price | money }}"
+            }
+            {% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+      {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  // Replace the ID below with the actual variant ID of Soft Winter Jacket
+  window.softWinterJacketVariantId = 1234567890;
+</script>
